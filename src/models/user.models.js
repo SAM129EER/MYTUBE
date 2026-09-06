@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    channelName: {
       type: String,
       required: true,
     },
@@ -23,6 +23,14 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "user"],
       default: "user",
     },
+    subscribers: {
+      type: Number,
+      default: 0,
+    },
+    subscribedChannels: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    }],
   },
   { timestamps: true },
 );
